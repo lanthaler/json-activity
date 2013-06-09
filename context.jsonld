@@ -30,6 +30,10 @@
     "prev": { "@type": "@id" },
     "next": { "@type": "@id" },
     "current": { "@type": "@id" },
-    "self": { "@type": "@id" }
+    "self": { "@type": "@id" },
+    "title": { "@container": "@language" },
+    "displayName": { "@container": "@language" },
+    "content": { "@container": "@language" },
+    "summary": { "@container": "@language" }
   }
 }
