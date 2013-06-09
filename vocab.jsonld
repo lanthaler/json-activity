@@ -1,0 +1,532 @@
+{
+  "@context": {
+    "as": "http://www.markus-lanthaler.com/json-activity/#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "hydra": "http://purl.org/hydra/core#",
+    "defines": { "@reverse": "rdfs:definedBy" },
+    "label": "rdfs:label",
+    "description": "rdfs:comment",
+    "domain": { "@id": "rdfs:domain", "@type": "@id" },
+    "range-not-converted-yet": { "@id": "rdfs:range", "@type": "@id" },
+    "supportedProperties": "hydra:supportedProperties",
+    "property": { "@id": "hydra:property", "@type": "@id" }
+  },
+  "@id": "http://www.markus-lanthaler.com/json-activity/",
+  "label": "JSON Activity Streams 2.0",
+  "description": "Currently I'm using a namespace I'm controlling so that the URLs can be dereferenced",
+  "defines": [
+    {
+      "@id": "as:Object",
+      "@type": "rdfs:Class",
+      "label": "Object",
+      "description": "An Activity Stream object",
+      "supportedProperties": [
+        { "property": "as:id" },
+        { "property": "as:type" },
+        { "property": "as:language" },
+        { "property": "as:name" },
+        { "property": "as:url" },
+        { "property": "as:rel" },
+        { "property": "as:mediaType" },
+        { "property": "as:actor" },
+        { "property": "as:object" },
+        { "property": "as:target" },
+        { "property": "as:result" },
+        { "property": "as:context" },
+        { "property": "as:status" },
+        { "property": "as:priority" },
+        { "property": "as:to" },
+        { "property": "as:cc" },
+        { "property": "as:bto" },
+        { "property": "as:bcc" },
+        { "property": "as:alias" },
+        { "property": "as:attachments" },
+        { "property": "as:author" },
+        { "property": "as:content" },
+        { "property": "as:duplicates" },
+        { "property": "as:icon" },
+        { "property": "as:image" },
+        { "property": "as:location" },
+        { "property": "as:published" },
+        { "property": "as:generator" },
+        { "property": "as:provider" },
+        { "property": "as:source" },
+        { "property": "as:summary" },
+        { "property": "as:updated" },
+        { "property": "as:startTime" },
+        { "property": "as:endTime" },
+        { "property": "as:rating" },
+        { "property": "as:tags" },
+        { "property": "as:title" },
+        { "property": "as:duration" },
+        { "property": "as:height" },
+        { "property": "as:width" },
+        { "property": "as:inReplyTo" },
+        { "property": "as:replies" }
+      ]
+    },
+    {
+      "@id": "as:id",
+      "@type": "rdf:Property",
+      "label": "id",
+      "domain": "as:Object",
+      "range": "IRI",
+      "description": "Provides a permanent, universally unique identifier for the object in the form of an absolute IRI [RFC3987]. Objects SHOULD contain a single \"id\" property. If an object does not contain an \"id\" property, consumers MAY use the value of the \"url\" property as a less-reliable, non-unique identifier."
+    },
+    {
+      "@id": "as:type",
+      "@type": "rdf:Property",
+      "label": "type",
+      "domain": "as:Object",
+      "range": "IRI",
+      "description": "Identifies the type of object. An object MAY contain a \"type\" property whose value matches either the \"isegment-nz-nc\" or the  \"IRI\" production in [RFC3987]. The use of a relative  reference other than a simple name is not allowed. If no \"type\"  property is specified, the object has no specific type."
+    },
+    {
+      "@id": "as:language",
+      "@type": "rdf:Property",
+      "label": "language",
+      "domain": "as:Object",
+      "range": "RFC5646 Language Tag",
+      "description": "Identifies the language for all human-readable, natural-language  metadata values included in the object. An object MAY contain a \"language\" property."
+    },
+    {
+      "@id": "as:name",
+      "@type": "rdf:Property",
+      "label": "name",
+      "domain": "as:Object",
+      "range": "String",
+      "description": "A simple human-readable, plain-text name for the  object. HTML markup MUST NOT be included. An object MAY contain a  \"displayName\" property. If the object does not specify a \"type\" property, the object SHOULD specify a \"displayName\"."
+    },
+    {
+      "@id": "as:displayName",
+      "@type": "rdf:Property",
+      "label": "name",
+      "domain": "as:Object",
+      "range": "String",
+      "description": "An object MAY contain a  \"displayName\" property. If the object does not specify a \"type\" property, the object SHOULD specify a \"displayName\". (not in spec draft)"
+    },
+    {
+      "@id": "as:url",
+      "@type": "rdf:Property",
+      "label": "url",
+      "domain": "as:Object",
+      "range": "Link",
+      "description": "A Link value describing a resource  that provides a visual representation of the object. An object  MAY contain a \"url\" property."
+    },
+    {
+      "@id": "as:rel",
+      "@type": "rdf:Property",
+      "label": "rel",
+      "domain": "as:Object",
+      "range": "RFC 5988 Link Relation",
+      "description": "The RFC 5988 Link Relation associated with this link value. If absent, the name of the property is assumed to specify  the link relation."
+    },
+    {
+      "@id": "as:mediaType",
+      "@type": "rdf:Property",
+      "label": "mediaType",
+      "domain": "as:Object",
+      "range": "MIME Media Type",
+      "description": "The MIME media type of the resource being referenced."
+    },
+    {
+      "@id": "as:actor",
+      "@type": "rdf:Property",
+      "label": "actor",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "Describes the entity that either peformed or is expected to  perform the Activity."
+    },
+    {
+      "@id": "as:object",
+      "@type": "rdf:Property",
+      "label": "object",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "Describes the primary object of the activity. For instance, in the activity, \"John saved a movie to his wishlist\", the object of the activity is \"movie\". An activity SHOULD contain an \"object\" property. If the \"object\" property is not contained, the primary object of the activity MAY be implied by context."
+    },
+    {
+      "@id": "as:target",
+      "@type": "rdf:Property",
+      "label": "target",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "Describes the target of the activity. The precise meaning of the activity's target is dependent on the activities \"verb\", but will often be the object the English preposition \"to\". For instance, in the activity, \"John saved a movie to his wishlist\", the target of the activity is \"wishlist\". The activity target MUST NOT be used to identity an indirect object that is not a target of the activity."
+    },
+    {
+      "@id": "as:result",
+      "@type": "rdf:Property",
+      "label": "result",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "Describes the result of the activity. For instance, if a particular action results in the creation of a new resource, the \"result\"  property can be used to describe that new resource."
+    },
+    {
+      "@id": "as:context",
+      "@type": "rdf:Property",
+      "label": "context",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "The \"context\" property allows the Activity to further include  information about why a particular action occurred by providing  details about the context within which a particular action was  performed. The value of the context property is a Link value."
+    },
+    {
+      "@id": "as:status",
+      "@type": "rdf:Property",
+      "label": "status",
+      "domain": "as:Object",
+      "range": "String",
+      "description": "A string value indicating the current status of the activity. The value MUST be one of: \"tentative\", \"pending\", \"completed\", or \"canceled\"."
+    },
+    {
+      "@id": "as:priority",
+      "@type": "rdf:Property",
+      "label": "priority",
+      "domain": "as:Object",
+      "range": "Decimal Number between 0.00 and 1.00",
+      "description": "An indicator of the relative priority or importance that the creator of an Activity object considers the object to have. Represented as a numeric decimal between 0.00 and 1.00, with two decimal places of precision. If the property is omitted, or expicitly set to null, the assumption is that no explicit priority or importance can be assumed. All other values falling between 0.00 and 1.00 indicate increasing  priority."
+    },
+    {
+      "@id": "as:to",
+      "@type": "rdf:Property",
+      "label": "to",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "Specifies the public primary audience."
+    },
+    {
+      "@id": "as:cc",
+      "@type": "rdf:Property",
+      "label": "cc",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "Specifies the public secondary audience."
+    },
+    {
+      "@id": "as:bto",
+      "@type": "rdf:Property",
+      "label": "bto",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "Specifies the private primary audience."
+    },
+    {
+      "@id": "as:bcc",
+      "@type": "rdf:Property",
+      "label": "bcc",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "Specifies the private secondary audience."
+    },
+    {
+      "@id": "as:alias",
+      "@type": "rdf:Property",
+      "label": "alias",
+      "domain": "as:Object",
+      "range": "IRI",
+      "description": "Provides a contextually meaningful alternative label for the object in addition to the \"id\". For instance, within some  systems, groups can be identified both by a unique global ID and a more \"human-friendly\" label such as \"@friends\" or \"@network\". The value of the \"alias\" property MUST match either the \"isegment-nz-nc\"  or the \"IRI\" production in [RFC3987]. The use of a relative reference other than a simple name is not allowed."
+    },
+    {
+      "@id": "as:attachments",
+      "@type": "rdf:Property",
+      "label": "attachments",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Link value referencing one or more  objects associated with the containing object. These are similiar  in concept to files attached to an email message."
+    },
+    {
+      "@id": "as:author",
+      "@type": "rdf:Property",
+      "label": "author",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Link value referencing one or more entity that created or authored the object."
+    },
+    {
+      "@id": "as:content",
+      "@type": "rdf:Property",
+      "label": "content",
+      "domain": "as:Object",
+      "range": "Natural Language value",
+      "description": "A Natural-language description of the object encoded as a single JSON String containing HTML markup. Visual elements such as  thumbnail images MAY be included."
+    },
+    {
+      "@id": "as:duplicates",
+      "@type": "rdf:Property",
+      "label": "duplicates",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Linkvalue referencing one or more objects that are semantically equivalent to this object or duplicate  this objects content. An object SHOULD contain a \"duplicates\"  property when there are known objects, possibly in a different  system, that are semantically equivalent or duplicate the content."
+    },
+    {
+      "@id": "as:icon",
+      "@type": "rdf:Property",
+      "label": "icon",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Link value referencing one or more  visual, graphic representations of the object, intended for human  consumption. The visual element SHOULD have an aspect ratio of  one (horizontal) to one (vertical) and SHOULD be suitable for  presentation at a small size."
+    },
+    {
+      "@id": "as:image",
+      "@type": "rdf:Property",
+      "label": "image",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Link value referencing one or more visual, graphic represenations of the object. Unlike the \"icon\" property, there are no aspect ratio or display restrictions."
+    },
+    {
+      "@id": "as:location",
+      "@type": "rdf:Property",
+      "label": "location",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Link value describing one or more  physical or virtual locations associated with which the object."
+    },
+    {
+      "@id": "as:published",
+      "@type": "rdf:Property",
+      "label": "published",
+      "domain": "as:Object",
+      "range": "date-time",
+      "description": "The date and time at which the object was published."
+    },
+    {
+      "@id": "as:generator",
+      "@type": "rdf:Property",
+      "label": "generator",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Link value referencing the  application that generated the object."
+    },
+    {
+      "@id": "as:provider",
+      "@type": "rdf:Property",
+      "label": "provider",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Link value referencing the application  that published the object. Note that this is not necessarily the  same entity that generated the object."
+    },
+    {
+      "@id": "as:source",
+      "@type": "rdf:Property",
+      "label": "source",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Link value referencing the original source of this object. The source property is closely related to  the generator and provider properties but serves the distinct  purpose of identifying where the object was originally published as  opposed to identifying the applications that generated or published it."
+    },
+    {
+      "@id": "as:summary",
+      "@type": "rdf:Property",
+      "label": "summary",
+      "domain": "as:Object",
+      "range": "Natural Language value",
+      "description": "A Natural-language summarization of the object encoded as a single JSON String containing HTML markup. Visual elements such as  thumbnail images can be included."
+    },
+    {
+      "@id": "as:updated",
+      "@type": "rdf:Property",
+      "label": "updated",
+      "domain": "as:Object",
+      "range": "RFC3339 date-time",
+      "description": "The date and time at which a previously published object has been modified."
+    },
+    {
+      "@id": "as:startTime",
+      "@type": "rdf:Property",
+      "label": "startTime",
+      "domain": "as:Object",
+      "range": "RFC3339 date-time",
+      "description": "A date-time describing the actual or expected starting time of the object. When used within an Activity object, for instance,  the \"startTime\" specifies the moment the activity began or is  scheduled to begin."
+    },
+    {
+      "@id": "as:endTime",
+      "@type": "rdf:Property",
+      "label": "endTime",
+      "domain": "as:Object",
+      "range": "RFC3339 date-time",
+      "description": "A date-time describing the actual or expected ending time of the object. When used within an Activity object, for instance, the \"endTime\" specifies the moment the activity concluded or is scheduled to conclude."
+    },
+    {
+      "@id": "as:rating",
+      "@type": "rdf:Property",
+      "label": "rating",
+      "domain": "as:Object",
+      "range": "Decimal Number between 1.0 and 5.0",
+      "description": "A quality rating expressed as a number between 1.0 and 5.0  (inclusive) with one decimal place of precision."
+    },
+    {
+      "@id": "as:tags",
+      "@type": "rdf:Property",
+      "label": "tags",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Link value referencing one or more  resources that are loosely associated with the containing object. The \"tags\" and \"attachments\" properties differ from one another in that the \"tags\" property asserts \"association by reference\" while \"attachments\" asserts \"association by enclosure\"."
+    },
+    {
+      "@id": "as:title",
+      "@type": "rdf:Property",
+      "label": "title",
+      "domain": "as:Object",
+      "range": "Natural Language value",
+      "description": "A Natural-language title of the object encoded as a single JSON String containing HTML markup."
+    },
+    {
+      "@id": "as:duration",
+      "@type": "rdf:Property",
+      "label": "duration",
+      "domain": "as:Object",
+      "range": "Integer",
+      "description": "When the object describes a time-based resource, such as audio  or video, the \"duration\" property indicates the approximate  length of time in seconds."
+    },
+    {
+      "@id": "as:height",
+      "@type": "rdf:Property",
+      "label": "height",
+      "domain": "as:Object",
+      "range": "Integer",
+      "description": "When the object describes a visual resource, such as an  image, video or embeddable HTML page, the \"height\" property indicates the recommended display height in pixels."
+    },
+    {
+      "@id": "as:width",
+      "@type": "rdf:Property",
+      "label": "width",
+      "domain": "as:Object",
+      "range": "Integer",
+      "description": "When the object describes a visual resource, such as an  image, video or embeddable HTML page, the \"width\" property indicates the recommended display width in pixels."
+    },
+    {
+      "@id": "as:inReplyTo",
+      "@type": "rdf:Property",
+      "label": "inReplyTo",
+      "domain": "as:Object",
+      "range": "Link value",
+      "description": "A Link value identifying one or  more other objects to which the containing object can be  considered a response."
+    },
+    {
+      "@id": "as:Collection",
+      "@type": "rdfs:Class",
+      "label": "Collection",
+      "description": "An Activity Stream collection object",
+      "supportedProperties": [
+        { "property": "as:Collection" },
+        { "property": "as:totalItems" },
+        { "property": "as:items" },
+        { "property": "as:itemsAfter" },
+        { "property": "as:itemsBefore" },
+        { "property": "as:itemsPerPage" },
+        { "property": "as:startIndex" },
+        { "property": "as:first" },
+        { "property": "as:last" },
+        { "property": "as:prev" },
+        { "property": "as:next" },
+        { "property": "as:current" },
+        { "property": "as:self" }
+      ]
+    },
+    {
+      "@id": "as:totalItems",
+      "@type": "rdf:Property",
+      "label": "totalItems",
+      "domain": "as:Collection",
+      "range": "Integer",
+      "description": "Non-negative integer specifying the total number of objects contained by the logical view of the collection. This number might not reflect the actual number of items serialized within the Collection object instance."
+    },
+    {
+      "@id": "as:items",
+      "@type": "rdf:Property",
+      "label": "items",
+      "domain": "as:Collection",
+      "range": "Array of Objects",
+      "description": "An array containing a listing of Objects of any type."
+    },
+    {
+      "@id": "as:itemsAfter",
+      "@type": "rdf:Property",
+      "label": "itemsAfter",
+      "domain": "as:Collection",
+      "range": "RFC3339 date-time",
+      "description": "A RFC 3339 date-time that indicates that the collection contains only items published or updated strictly after the date and time  specified."
+    },
+    {
+      "@id": "as:itemsBefore",
+      "@type": "rdf:Property",
+      "label": "itemsBefore",
+      "domain": "as:Collection",
+      "range": "RFC3339 date-time",
+      "description": "A RFC 3339 date-time that indicates that the collection contains only items published or updated strictly before the date and time  specified."
+    },
+    {
+      "@id": "as:itemsPerPage",
+      "@type": "rdf:Property",
+      "label": "itemsPerPage",
+      "domain": "as:Collection",
+      "range": "Integer",
+      "description": "A non-negative integer specifying the maximum number of items  that will be included in the value of the items array."
+    },
+    {
+      "@id": "as:startIndex",
+      "@type": "rdf:Property",
+      "label": "startIndex",
+      "domain": "as:Collection",
+      "range": "Integer",
+      "description": "A non-negative integer value identifying the relative position  within the logical view of collection of the first object  contained in the items property. For instance, if there are 20  items that are considered to be members of a collection, but  only the last 10 of those items are included in the items  property, the value of startIndex would be 10."
+    },
+    {
+      "@id": "as:first",
+      "@type": "rdf:Property",
+      "label": "first",
+      "domain": "as:Collection",
+      "range": "Link value",
+      "description": "A Link value referencing the  furthest preceeding page of a multi-page collection."
+    },
+    {
+      "@id": "as:last",
+      "@type": "rdf:Property",
+      "label": "last",
+      "domain": "as:Collection",
+      "range": "Link value",
+      "description": "A Link value referencing the  furthest following page of a multi-page collection."
+    },
+    {
+      "@id": "as:prev",
+      "@type": "rdf:Property",
+      "label": "prev",
+      "domain": "as:Collection",
+      "range": "Link value",
+      "description": "A Link value referencing the  immediately preceding page of the multi-page collection. Note  that the property name previous can be used as an equivalent  alternative; however implementations SHOULD use prev and MUST  NOT use both prev AND previous within the same collection."
+    },
+    {
+      "@id": "as:next",
+      "@type": "rdf:Property",
+      "label": "next",
+      "domain": "as:Collection",
+      "range": "Link value",
+      "description": "A Link value referencing the immediately  following page of the multi-page collection."
+    },
+    {
+      "@id": "as:current",
+      "@type": "rdf:Property",
+      "label": "current",
+      "domain": "as:Collection",
+      "range": "Link value",
+      "description": "A Link value referencing the page  containing the items that have been updated or published most  recently."
+    },
+    {
+      "@id": "as:self",
+      "@type": "rdf:Property",
+      "label": "self",
+      "domain": "as:Collection",
+      "range": "Link value",
+      "description": "A Link value referencing this page."
+    },
+    {
+      "@id": "as:replies",
+      "@type": "rdf:Property",
+      "label": "replies",
+      "domain": "as:Object",
+      "range": "Collection",
+      "description": "Provides information about the set of objects that can be  considered to be replies to the containing object."
+    }
+  ]
+}
