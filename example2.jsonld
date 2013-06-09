@@ -1,0 +1,53 @@
+{
+  "@context": "context.jsonld",
+  "items" : [
+    {
+      "type": "post",
+      "language": "en",
+      "published": "2011-02-10T15:04:55Z",
+      "foo": "some extension property",
+      "generator": "http://example.org/activities-app",
+      "provider": "http://example.org/activity-stream",
+      "title": {
+        "en": "Martin posted a new video to his album.",
+        "ga": "Martin phost le fisean nua a albam."
+      },
+      "actor": {
+        "type": "person",
+        "id": "urn:example:person:martin",
+        "displayName": "Martin Smith",
+        "url": "http://example.org/martin",
+        "foo2": "some other extension property",
+        "image": {
+          "id": "http://example.org/martin/image",
+          "width": 250,
+          "height": 250
+        }
+      },
+      "object" : {
+        "type": "photo",
+        "id": "urn:example:album:abc123/my_fluffy_cat",
+        "url": "http://example.org/album/my_fluffy_cat.jpg",
+        "image": {
+          "id": "http://example.org/album/my_fluffy_cat_thumb.jpg",
+          "width": 250,
+          "height": 250
+        }
+      },
+      "target": {
+        "url": "http://example.org/album/",
+        "type": "photo-album",
+        "id": "urn:example.org:album:abc123",
+        "title": {
+          "en": "Martin's Photo Album",
+          "ga": "Grianghraif Mairtin"
+        },
+        "image": {
+          "id": "http://example.org/album/thumbnail.jpg",
+          "width": 250,
+          "height": 250
+        }
+      }
+    }
+  ]
+}
