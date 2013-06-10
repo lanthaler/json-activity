@@ -1,6 +1,6 @@
 {
   "@context": {
-    "@vocab": "http://www.markus-lanthaler.com/json-activity/#",
+    "@vocab": "http://activitystrea.ms/spec/2.0/#",
     "id": "@id",
     "type": "@type",
     "url": { "@type": "@id" },

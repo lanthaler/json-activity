@@ -1,6 +1,6 @@
 {
   "@context": {
-    "as": "http://www.markus-lanthaler.com/json-activity/#",
+    "as": "http://activitystrea.ms/spec/2.0/#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -13,9 +13,8 @@
     "supportedProperties": "hydra:supportedProperties",
     "property": { "@id": "hydra:property", "@type": "@id" }
   },
-  "@id": "http://www.markus-lanthaler.com/json-activity/",
+  "@id": "http://activitystrea.ms/spec/2.0/",
   "label": "JSON Activity Streams 2.0",
-  "description": "Currently I'm using a namespace I'm controlling so that the URLs can be dereferenced",
   "defines": [
     {
       "@id": "as:Object",
