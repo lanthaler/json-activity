@@ -13,7 +13,6 @@
     "cc": { "@type": "@id" },
     "bto": { "@type": "@id" },
     "bcc": { "@type": "@id" },
-    "alias": { "@type": "@id" },
     "attachments": { "@type": "@id" },
     "author": { "@type": "@id" },
     "duplicates": { "@type": "@id" },
