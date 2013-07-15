@@ -3,6 +3,7 @@
     "@vocab": "http://activitystrea.ms/spec/2.0/#",
     "id": "@id",
     "type": "@type",
+    "verb": "@type",
     "url": { "@type": "@id" },
     "actor": { "@type": "@id" },
     "object": { "@type": "@id" },
